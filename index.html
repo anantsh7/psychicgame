@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Psychic Game</title>
+</head>
+
+<body>
+  <h1>Welcome to The Psychic Game</h1>
+  <h2>To begin playing press any key </h2>
+  <div id="psychic">
+
+    <h2>Wins</h2>
+    <p id="number_of_wins"></p>
+    <h2>Losses</h2>
+    <p id="number_of_losses"></p>
+    <h2>Number of Guesses</h2>
+    <p id="number_of_guesses"></p>
+    <h2>Lives Left</h2>
+    <p id="lives_left"></p>
+
+
+  </div>
+  <script>
+    // 1. computer picks random letter
+    // 2. user picks letter
+    // 3. checks if user's pick matches computer's pick
+    // 4. log result 
+    var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+      'u', 'v', 'w', 'x', 'y', 'z'
+    ];
+    var Wins = 0;
+    var Losses = 0;
+    var Guesses = 0;
+    var Lives = 10;
+
+    var screen = document.getElementById("#psychic");
+
+    document.onkeyup = function (event) {
+      var Userguess = event.key;
+
+      function gameReset() {
+        guesses = 0;
+        lives = 10;
+      }
+
+      var computerChoice = letters[Math.floor(Math.random() * letters.length)];
+      if (guesses < 10) {
+        if (key === computerChoice) {
+          alert("Congrats, you win!");
+          wins++;
+          guesses++;
+          displayResults();
+          gameReset();
+        } else {
+          lives--;
+          guesses++;
+          displayResults();
+        }
+      } else {
+        alert("You suck, try again");
+        losses++;
+        gameReset();
+      }
+      document.getElementById("number_of_wins").textContent = ("Wins: " + wins)
+      document.getElementById("number_of_losses").textContent = ("Losses: " + losses)
+      document.getElementById("number_of_guesses").textContent = ("Guesses: " + Guesses)
+      document.getElementById("lives_left").textContent = ("Lives: " + Lives)
+    }
+  </script>
+
+
+</body>
+
+</html>
